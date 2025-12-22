@@ -1,11 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blog de Educação Financeira</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'blog/imagens/favicon.png' %}">
 </head>
 <body>
-    <h1>Ola mundo</h1>
+
+    <header>
+        <img src="{% static 'blog/imagens/banner.jpg' %}" alt="Banner do Blog" style="width:100%; max-height:300px; object-fit:cover;">
+        <h1>Educação Financeira</h1>
+        <p>Aprenda a cuidar melhor do seu dinheiro</p>
+        <hr>
+        
+
+    </header>
+
+    <main>
+        <!-- Introdução fixa do blog -->
+        <section>
+            <h2>Sobre o blog</h2>
+            <p>
+                Este blog tem como objetivo compartilhar conhecimentos básicos
+                sobre educação financeira, ajudando você a organizar suas finanças,
+                evitar dívidas e planejar o futuro.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- Posts dinâmicos -->
+        <section>
+            <h2>Últimos posts</h2>
+
+            {% for post in posts %}
+                <article>
+                    <h3>{{ post.title }}</h3>
+                     <!-- Imagem do post -->
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width:100%; height:auto; border-radius:5px;">
+                {% endif %}
+                    <p>{{ post.text }}</p>
+                    <small>
+                        Publicado em: {{ post.published_date }}
+                    </small>
+                    <hr>
+                </article>
+            {% empty %}
+                <p>Nenhum post publicado ainda.</p>
+            {% endfor %}
+        </section>
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; 2025 - Blog de Educação Financeira</p>
+    </footer>
+
 </body>
 </html>

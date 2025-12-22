@@ -40,7 +40,10 @@ ALLOWED_HOSTS = [
 # settings.py
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://solid-fortnight-4j66q9wpr9692qg9r-8000.app.github.dev",
+    'https://localhost:8000',
+    'https://127.0.0.1:8000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
 ]
 
 # Application definition
@@ -132,3 +135,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / 'static'
+
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
